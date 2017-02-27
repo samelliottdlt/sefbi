@@ -3,6 +3,8 @@ export const asyncFB = new Promise((resolve, reject) => {
   initializedFB = resolve;
 })
 
+export let FB = window.FB;
+
 export const initFbSdk = function() {
   window.fbAsyncInit = function() {
     window.FB.init({
@@ -11,6 +13,7 @@ export const initFbSdk = function() {
       version    : 'v2.8'
     });
     window.FB.AppEvents.logPageView();
+    FB = window.FB;
     initializedFB(window.FB);
   };
 

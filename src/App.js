@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardHeader} from 'material-ui/Card';
 
 import './App.css';
 
 import { asyncFB } from './FbSdk';
-import { permissions } from './permissions'
+import { permissions } from './permissions';
+import { PageList } from './PageList';
 
 class App extends Component {
   state = {
@@ -50,7 +51,7 @@ class App extends Component {
     const {loggedIn} = this.state;
     return (
       <MuiThemeProvider>
-        <div>
+        <div style={{height: '100%'}}>
           <AppBar
             title={<span>Facebook Page Manager</span>}
             iconElementRight={
@@ -62,7 +63,8 @@ class App extends Component {
             }
           />
           {
-            loggedIn ? <div></div> :
+            loggedIn ?
+            <PageList></PageList> :
             <Card>
               <CardHeader
                 style={{textAlign: 'center', marginTop: '2em'}}
