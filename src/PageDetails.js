@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import {Card, CardText} from 'material-ui/Card';
+import {Card, CardText, CardHeader} from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { FB } from './FbSdk';
 
@@ -41,13 +42,16 @@ export class PageDetails extends Component {
     const { posts } = this.state;
     const radioStyles = {
       display: 'inline-block',
-      width: '10em'
+      width: '10em',
+      verticalAlign: 'middle'
     }
     return (
       <div style={{width: '80%', marginLeft: '20%'}}>
-        <div style={{marginBottom: '1.3em'}}>
+        <div style={{ width: '442px', margin: 'auto', marginBottom: '1.5em'}}>
           <RadioButtonGroup name="PublishStatus" defaultSelected="Published"
-            onChange={(e, value) => this.togglePosts(value)}>
+            onChange={(e, value) => this.togglePosts(value)}
+            style={{display: 'inline-block'}}
+          >
             <RadioButton
               value="Published"
               label="Published"
@@ -59,15 +63,14 @@ export class PageDetails extends Component {
               style={radioStyles}
             />
           </RadioButtonGroup>
+          <RaisedButton label="Create Post" primary={true} style={{display: 'inline-block'}} />
         </div>
-        <div>
+        <div style={{width: '450px', margin: 'auto'}}>
           {
             selectedPage === null ?
-            <Card>
-              <CardText>
+            <div style={{marginTop: '3em'}}>
                 No page selected. Please select a page from the list to the left.
-              </CardText>
-            </Card> :
+            </div> :
             posts.map(post => (
               <Card key={post.id}>
                 <CardText>
