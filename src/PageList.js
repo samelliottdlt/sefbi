@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-import {List, ListItem, makeSelectable} from 'material-ui/List';
+import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
 
@@ -16,6 +16,7 @@ export class PageList extends Component  {
 
   componentDidMount() {
     FB.api('/me/accounts', 'get', null, (response) => {
+      console.log(response);
       this.setState({...this.state, pages: response.data},
         () => {
           this.state.pages.forEach((page, i) => {
@@ -25,8 +26,9 @@ export class PageList extends Component  {
               this.setState({...this.state, pages: pages});
             });
           })
-        })
-      })
+        }
+      )
+    })
   }
 
   setSelectedPage(page) {
