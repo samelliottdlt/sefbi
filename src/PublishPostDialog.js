@@ -52,8 +52,10 @@ export class PublishPostDialog extends React.Component {
     const {time, date, postText} = this.state;
 
     const timeToPublish = new Date(date);
-    timeToPublish.setHours(time.getHours());
-    timeToPublish.setHours(time.getMinutes());
+    if(this.state.isScheduled) {
+      timeToPublish.setHours(time.getHours());
+      timeToPublish.setHours(time.getMinutes());
+    }
 
     const unixTimestamp = timeToPublish.getTime() / 1000;
 
